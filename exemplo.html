@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+
+    <h1>oi</h1>
+    <p id="select"></p>
+
+    <script>
+
+            let select = []
+
+            $(document).ready(() => {
+                $.ajax({
+                    url: "http://localhost:3000/produto",
+                    type: "GET",
+                    error: error => {
+                        console.error(error)
+                    },
+                    success: response => {
+                        console.log(response)
+                        $("#select").text(JSON.stringify(response[0][0]))
+                        select = response;
+                        console.log(select)
+                    }
+                })
+            })
+            
+            //ISOLAMENTO DE CONTEXTO
+            //Criar um contexto separado onde cria-se uma variável auxiliar que será usada e depois descartada, assim economizando espaço na memória 
+            (() => {
+                let teste = select[0][0],
+                select = teste
+            })()
+
+            //DICAS:
+            //Estudar .then, find(), .map()
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,4 @@
+# -=-=-= SELECT =-=-=-
+GET http://localhost:3000/produto HTTP/1.1
+Content-Type: application/json
+###
